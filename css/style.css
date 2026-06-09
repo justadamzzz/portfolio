@@ -989,6 +989,8 @@ body.dark-mode .project-preview {
 
 .blog-list {
   grid-template-columns: 1fr;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 900px;
 }
 
@@ -1008,6 +1010,39 @@ body.dark-mode .project-preview {
 .post-meta time {
   color: var(--muted);
   font-weight: 750;
+}
+
+.category-badge {
+  background: color-mix(in srgb, var(--cyan) 16%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--cyan) 54%, var(--line));
+}
+
+.post-preview {
+  color: var(--text);
+  font-size: 1.02rem;
+}
+
+.post-extra {
+  border-top: 1px solid var(--line);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.post-extra p:last-child {
+  margin-bottom: 0;
+}
+
+.read-more {
+  background: var(--surface-2);
+  border: 1px solid color-mix(in srgb, var(--cyan) 48%, var(--line));
+  border-radius: var(--radius);
+  margin-top: 1rem;
+  padding: 0.55rem 0.8rem;
+}
+
+.read-more:hover {
+  background: var(--cyan);
+  color: #06101d;
 }
 
 .project-tools {

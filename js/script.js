@@ -394,10 +394,12 @@ document.querySelectorAll(".read-more").forEach((button) => {
     const isHidden = extra.hasAttribute("hidden");
     if (isHidden) {
       extra.removeAttribute("hidden");
-      button.textContent = "Show less";
+      button.textContent = "Show Less";
+      button.setAttribute("aria-expanded", "true");
     } else {
       extra.setAttribute("hidden", "");
-      button.textContent = "Read more";
+      button.textContent = "Read More";
+      button.setAttribute("aria-expanded", "false");
     }
   });
 });

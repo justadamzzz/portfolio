@@ -12,7 +12,7 @@ A modern cyan-themed personal blog portfolio website for the CSD34203 Individual
 - Skills progress bars
 - Academic timeline section
 - Project cards with search and category filters
-- Blog posts with expandable read-more content
+- Blog page with recent dated posts, category badges, and expandable Read More content
 - Contact form with frontend-only validation
 - Download CV button placeholder
 - Back-to-top button
