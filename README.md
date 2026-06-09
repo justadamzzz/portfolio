@@ -52,6 +52,29 @@ personal-blog-portfolio/
 
 ## Project Showcase
 
+Some portfolio projects are private academic or coursework systems. For those projects, the portfolio shows preview images or custom portfolio previews only and does not expose private system links or live demos.
+
+### RESTful Web Service for Vet Clinic Management
+
+- Type: Private web service project
+- Preview image: `projects/vet/vet.png`
+- Description: A RESTful vet clinic management system using AJAX CRUD operations, PHP/CodeIgniter, MySQL, and XAMPP.
+- Status: Private Project / Preview Only
+
+### Bento Box Food Decoration Website
+
+- Type: Private interactive web project
+- Preview: No public preview image
+- Description: A playful bento box decoration website that demonstrates creativity, interactive UI design, DOM interaction, and user-focused design.
+- Status: Private Project
+
+### BiteBooking Restaurant Booking System
+
+- Type: Private restaurant booking system with chatbot
+- Preview image: `projects/book/book.png`
+- Description: A restaurant booking system with a chatbot using hybrid NLP and rule-based logic to filter food based on user preferences.
+- Status: Private Project / Preview Only
+
 ### IoT Mini Goal Scoreboard System
 
 - Type: IoT / Embedded System / Smart Sports Training Prototype

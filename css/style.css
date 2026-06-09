@@ -604,6 +604,7 @@ body.dark-mode .skill-fill {
 }
 
 .project-grid {
+  align-items: start;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -642,6 +643,63 @@ body.dark-mode .skill-fill {
   font-weight: 850;
   margin-bottom: 0.8rem;
   padding: 0.25rem 0.45rem;
+}
+
+.project-tag-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.project-tag-row .project-tag {
+  margin-bottom: 0;
+}
+
+.privacy-badge,
+.preview-only-label {
+  align-items: center;
+  border-radius: var(--radius);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0.25rem 0.5rem;
+}
+
+.privacy-badge {
+  background: color-mix(in srgb, var(--amber) 22%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--amber) 58%, var(--line));
+  color: var(--text);
+}
+
+.preview-only-label {
+  background: var(--surface-2);
+  border: 1px solid color-mix(in srgb, var(--cyan) 45%, var(--line));
+  color: var(--cyan-dark);
+}
+
+.project-preview {
+  background: var(--surface-2);
+  border: 1px solid color-mix(in srgb, var(--cyan) 44%, var(--line));
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--cyan) 8%, transparent);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.project-preview img,
+.project-preview svg {
+  aspect-ratio: 16 / 9;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+body.dark-mode .project-preview {
+  border-color: color-mix(in srgb, var(--cyan) 62%, var(--line));
+  box-shadow: 0 0 18px rgba(53, 217, 255, 0.14);
 }
 
 .tech-list {
