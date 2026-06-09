@@ -24,6 +24,8 @@ A modern cyan-themed personal blog portfolio website for the CSD34203 Individual
 - HTML5
 - CSS3
 - JavaScript
+- GitHub
+- GitHub Pages
 
 ## Folder Structure
 
@@ -95,6 +97,15 @@ Some portfolio projects are private academic or coursework systems. For those pr
 - Technologies: HTML with internal CSS and JavaScript, Canvas API, localStorage
 - Status: Completed
 
+## Through this portfolio project, I learned:
+
+- How to build and organize a personal portfolio website
+- How to use Git and GitHub for version control
+- How to document a project clearly using `README.md`
+- How to present private and public projects professionally
+- How to combine creativity, interaction, and technical content in a portfolio
+- How to make a website more responsive and user-friendly
+
 ## How to Run the Project
 
 1. Download or clone this repository.
@@ -104,7 +115,6 @@ Some portfolio projects are private academic or coursework systems. For those pr
 No installation or build step is required because this is a static HTML, CSS, and JavaScript website.
 
 ## Screenshots
-
 
 - Home page screenshot
 <img width="756" height="743" alt="image" src="https://github.com/user-attachments/assets/27079f9b-b8b6-49fd-b6d3-a35e2a786e4f" />
@@ -125,32 +135,18 @@ No installation or build step is required because this is a static HTML, CSS, an
 <img width="286" height="622" alt="image" src="https://github.com/user-attachments/assets/8285449f-b5ee-445c-b791-bc124d2e6137" />
 
 
-## Demo Link
+## Live Demo
 [`https://yourusername.github.io/personal-blog-portfolio/`](https://justadamzzz.github.io/portfolio/contact.html)
 
-## GitHub Pages Deployment
-
-1. Push this project to a GitHub repository.
-2. Open the repository on GitHub.
-3. Go to `Settings`.
-4. Select `Pages`.
-5. Under `Build and deployment`, choose `Deploy from a branch`.
-6. Select the `main` branch and `/root` folder.
-7. Save the settings and wait for GitHub Pages to publish the website.
 
 ## Author
 
-KAMARUL ADAM SHAH BIN KAMARUL AZLAN
-
-Computer Science in Software Development  
-Faculty of Informatics and Computing (FIK)  
+**KAMARUL ADAM SHAH BIN KAMARUL AZLAN**  
+Bachelor of Computer Science in Software Development  
 Universiti Sultan Zainal Abidin (UniSZA)
 
-## Suggested Git Commit Messages
+- Email: [kamarulshah793@gmail.com](mailto:kamarulshah793@gmail.com)
+- GitHub: [https://github.com/justadamzzz](https://github.com/justadamzzz)
+- LinkedIn: [https://www.linkedin.com/in/kamarulshah](https://www.linkedin.com/in/kamarulshah)
 
-- `Initial project setup with HTML structure`
-- `Added responsive navigation and homepage design`
-- `Created about and blog pages`
-- `Added project cards and contact links`
-- `Implemented dark mode typing animation and visitor counter`
-- `Updated README with project documentation`
+
