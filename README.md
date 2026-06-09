@@ -105,20 +105,23 @@ No installation or build step is required because this is a static HTML, CSS, an
 
 ## Screenshots
 
-Add screenshots here after running the project:
 
 - Home page screenshot
+<img width="756" height="743" alt="image" src="https://github.com/user-attachments/assets/27079f9b-b8b6-49fd-b6d3-a35e2a786e4f" />
 - About page screenshot
+<img width="1157" height="892" alt="image" src="https://github.com/user-attachments/assets/9a9f807c-eed8-49b9-b896-4f535a169170" />
 - Blog page screenshot
+<img width="798" height="852" alt="image" src="https://github.com/user-attachments/assets/58e0cc38-4780-4b1c-ac09-2b548f886bf4" />
 - Projects page screenshot
+<img width="837" height="880" alt="image" src="https://github.com/user-attachments/assets/fbfb9fa4-08a6-4e25-8646-278610ea343e" />
 - Contact page screenshot
+<img width="1138" height="708" alt="image" src="https://github.com/user-attachments/assets/8357c7cf-da9a-45c5-85a6-e75f5cdc7708" />
 - Mobile responsive view screenshot
+<img width="286" height="622" alt="image" src="https://github.com/user-attachments/assets/8285449f-b5ee-445c-b791-bc124d2e6137" />
+
 
 ## Demo Link
-
-Add your GitHub Pages link here:
-
-`https://yourusername.github.io/personal-blog-portfolio/`
+[`https://yourusername.github.io/personal-blog-portfolio/`](https://justadamzzz.github.io/portfolio/contact.html)
 
 ## GitHub Pages Deployment
 
