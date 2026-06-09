@@ -13,7 +13,7 @@ A modern cyan-themed personal blog portfolio website for the CSD34203 Individual
 - Academic timeline section
 - Project cards with search and category filters
 - Blog page with recent dated posts, category badges, and expandable Read More content
-- Contact form with frontend-only validation
+- Contact page with email, GitHub, and LinkedIn profile links
 - Download CV button placeholder
 - Back-to-top button
 - Active navigation link on each page
@@ -143,6 +143,6 @@ Universiti Sultan Zainal Abidin (UniSZA)
 - `Initial project setup with HTML structure`
 - `Added responsive navigation and homepage design`
 - `Created about and blog pages`
-- `Added project cards and contact form`
+- `Added project cards and contact links`
 - `Implemented dark mode typing animation and visitor counter`
 - `Updated README with project documentation`

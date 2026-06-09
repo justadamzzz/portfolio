@@ -454,7 +454,7 @@ h3 {
 .timeline article,
 .post-card,
 .contact-panel,
-.contact-form,
+.contact-card,
 .info-grid article,
 .project-tools,
 .empty-state {
@@ -471,8 +471,7 @@ h3 {
 
 .hud-label,
 .stats-strip span,
-.info-grid span,
-.contact-list span {
+.info-grid span {
   color: var(--cyan-dark);
   display: block;
   font-size: 0.78rem;
@@ -620,7 +619,7 @@ body.dark-mode .skill-fill {
 .feature-card,
 .post-card,
 .contact-panel,
-.contact-form {
+.contact-card {
   padding: 1.35rem;
 }
 
@@ -1052,8 +1051,7 @@ body.dark-mode .project-preview {
   padding: 1rem;
 }
 
-.project-tools label,
-.field-group label {
+.project-tools label {
   font-weight: 850;
 }
 
@@ -1109,49 +1107,55 @@ textarea:focus {
   grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
 }
 
-.contact-list {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0;
-}
-
-.contact-list li {
-  border-bottom: 1px solid var(--line);
-  padding: 0.8rem 0;
-}
-
-.contact-list a {
-  color: var(--text);
-  font-weight: 800;
-  overflow-wrap: anywhere;
-}
-
-.note {
-  background: var(--surface-2);
-  border-left: 4px solid var(--amber);
-  border-radius: var(--radius);
-  margin-top: 1rem;
-  padding: 0.8rem;
-}
-
-.contact-form {
+.contact-card-grid {
   display: grid;
   gap: 1rem;
 }
 
-.field-group {
-  display: grid;
-  gap: 0.35rem;
+.contact-card {
+  align-items: center;
+  color: var(--text);
+  display: flex;
+  gap: 1rem;
+  text-decoration: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
-.field-error {
-  color: var(--coral);
-  min-height: 1.2rem;
+.contact-card:hover {
+  border-color: color-mix(in srgb, var(--cyan) 64%, var(--line));
+  box-shadow: 0 16px 34px color-mix(in srgb, var(--cyan) 16%, transparent);
+  transform: translateY(-3px);
 }
 
-.form-status {
-  font-weight: 850;
-  min-height: 1.5rem;
+.contact-icon {
+  align-items: center;
+  background: linear-gradient(135deg, var(--cyan), color-mix(in srgb, var(--cyan) 42%, var(--green)));
+  border-radius: var(--radius);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--cyan) 38%, transparent);
+  color: #06101d;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-weight: 950;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: 0;
+  width: 48px;
+}
+
+.contact-card strong,
+.contact-card small {
+  display: block;
+}
+
+.contact-card strong {
+  font-size: 1.05rem;
+}
+
+.contact-card small {
+  color: var(--muted);
+  font-weight: 750;
+  margin-top: 0.2rem;
+  overflow-wrap: anywhere;
 }
 
 .site-footer {

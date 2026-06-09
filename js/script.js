@@ -6,8 +6,6 @@ const visitorCount = document.querySelector("#visitor-count");
 const typingText = document.querySelector("#typing-text");
 const backToTop = document.querySelector(".back-to-top");
 const downloadCv = document.querySelector("#download-cv");
-const contactForm = document.querySelector("#contact-form");
-const formStatus = document.querySelector("#form-status");
 const searchInput = document.querySelector("#project-search");
 const filterButtons = document.querySelectorAll(".filter-btn");
 const projectCards = document.querySelectorAll("[data-project-card]");
@@ -437,54 +435,4 @@ filterButtons.forEach((button) => {
 
 if (searchInput) {
   searchInput.addEventListener("input", filterProjects);
-}
-
-function setFieldError(input, message) {
-  const group = input.closest(".field-group");
-  const error = group ? group.querySelector(".field-error") : null;
-  if (error) error.textContent = message;
-  input.setAttribute("aria-invalid", message ? "true" : "false");
-}
-
-if (contactForm && formStatus) {
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const name = contactForm.elements.name;
-    const email = contactForm.elements.email;
-    const subject = contactForm.elements.subject;
-    const message = contactForm.elements.message;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let isValid = true;
-
-    [name, email, subject, message].forEach((input) => setFieldError(input, ""));
-
-    if (name.value.trim().length < 2) {
-      setFieldError(name, "Please enter your name.");
-      isValid = false;
-    }
-
-    if (!emailPattern.test(email.value.trim())) {
-      setFieldError(email, "Please enter a valid email address.");
-      isValid = false;
-    }
-
-    if (subject.value.trim().length < 3) {
-      setFieldError(subject, "Please enter a subject.");
-      isValid = false;
-    }
-
-    if (message.value.trim().length < 10) {
-      setFieldError(message, "Please write a message with at least 10 characters.");
-      isValid = false;
-    }
-
-    if (!isValid) {
-      formStatus.textContent = "Please fix the highlighted fields.";
-      return;
-    }
-
-    formStatus.textContent = "Message validated successfully. This frontend-only demo does not send email yet.";
-    contactForm.reset();
-  });
 }
