@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal blog portfolio of Kamarul Adam Shah, a Computer Science in Software Development student.">
+  <title>Kamarul Adam Shah | Personal Blog Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="mini-game-layer" id="jet-mini-game-layer" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Go to homepage">
+        <span class="brand-mark">KA</span>
+        <span>Kamarul.dev</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="toggle-icon" aria-hidden="true">DM</span>
+          <span>Mode</span>
+        </button>
+        <div class="mini-game-panel" aria-label="Flying Jet Mini Game Background score">
+          <span id="jet-score">Jets: 0</span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero tech-hero">
+      <div class="hero-content">
+        <p class="eyebrow">CSD34203 GitHub Portfolio</p>
+        <h1>KAMARUL ADAM SHAH BIN KAMARUL AZLAN</h1>
+        <p class="typing-line">
+          <span id="typing-text">Computer Science Student</span>
+          <span class="typing-cursor" aria-hidden="true"></span>
+        </p>
+        <p class="hero-text">
+          A Computer Science in Software Development student at UniSZA who enjoys building useful web systems, exploring data, learning artificial intelligence, and turning ideas into interactive digital experiences.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="projects.html">View Projects</a>
+          <a class="btn ghost" href="contact.html">Contact Me</a>
+          <a class="btn quiet" href="#" id="download-cv">Download CV</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Profile preview">
+        <img class="profile-image" src="images/profile.jpg" data-fallback="images/pixel-avatar.svg" alt="Profile placeholder for Kamarul Adam Shah">
+        <div class="hud-panel">
+          <span class="hud-label">Current Status</span>
+          <strong>Third Year, Semester 6</strong>
+          <p>Programme: Computer Science in Software Development</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section stats-strip" aria-label="Student quick facts">
+      <article>
+        <span>Faculty</span>
+        <strong>FIK, UniSZA</strong>
+      </article>
+      <article>
+        <span>Class</span>
+        <strong>PP - Pembangunan Perisian</strong>
+      </article>
+      <article>
+        <span>Goal</span>
+        <strong>Software, Data, or AI Engineer</strong>
+      </article>
+      <article>
+        <span>Visits</span>
+        <strong><span id="visitor-count">1</span> local visits</strong>
+      </article>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading">
+        <p class="eyebrow">Skill Inventory</p>
+        <h2>Tools and Technologies</h2>
+        <p>These are the technologies I use for learning, assignments, data work, and web development projects.</p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card" data-level="90"><div class="skill-header"><span>HTML</span><strong>90%</strong></div><div class="skill-bar" role="progressbar" aria-label="HTML skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="85"><div class="skill-header"><span>CSS</span><strong>85%</strong></div><div class="skill-bar" role="progressbar" aria-label="CSS skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="80"><div class="skill-header"><span>JavaScript</span><strong>80%</strong></div><div class="skill-bar" role="progressbar" aria-label="JavaScript skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="85"><div class="skill-header"><span>PHP</span><strong>85%</strong></div><div class="skill-bar" role="progressbar" aria-label="PHP skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="80"><div class="skill-header"><span>Python</span><strong>80%</strong></div><div class="skill-bar" role="progressbar" aria-label="Python skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="75"><div class="skill-header"><span>Java</span><strong>75%</strong></div><div class="skill-bar" role="progressbar" aria-label="Java skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="20"><div class="skill-header"><span>C++</span><strong>20%</strong></div><div class="skill-bar" role="progressbar" aria-label="C++ skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="85"><div class="skill-header"><span>MySQL</span><strong>85%</strong></div><div class="skill-bar" role="progressbar" aria-label="MySQL skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="80"><div class="skill-header"><span>GitHub</span><strong>80%</strong></div><div class="skill-bar" role="progressbar" aria-label="GitHub skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="85"><div class="skill-header"><span>XAMPP</span><strong>85%</strong></div><div class="skill-bar" role="progressbar" aria-label="XAMPP skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="75"><div class="skill-header"><span>CodeIgniter</span><strong>75%</strong></div><div class="skill-bar" role="progressbar" aria-label="CodeIgniter skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="90"><div class="skill-header"><span>VS Code</span><strong>90%</strong></div><div class="skill-bar" role="progressbar" aria-label="VS Code skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="75"><div class="skill-header"><span>Tableau</span><strong>75%</strong></div><div class="skill-bar" role="progressbar" aria-label="Tableau skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="70"><div class="skill-header"><span>KNIME</span><strong>70%</strong></div><div class="skill-bar" role="progressbar" aria-label="KNIME skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"><span class="skill-fill"></span></div></article>
+        <article class="skill-card" data-level="10"><div class="skill-header"><span>Looker Studio</span><strong>10%</strong></div><div class="skill-bar" role="progressbar" aria-label="Looker Studio skill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10"><span class="skill-fill"></span></div></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Featured Builds</p>
+        <h2>Project Highlights</h2>
+        <p>A few projects that show my interest in software development, interactive systems, and practical problem solving.</p>
+      </div>
+
+      <div class="project-grid compact">
+        <article class="project-card">
+          <span class="project-tag">Web Service</span>
+          <h3>RESTful Web Service for Vet Clinic Management</h3>
+          <p>A RESTful system for managing vet clinic data with AJAX CRUD operations without refreshing the page.</p>
+          <a class="text-link" href="projects.html">View details</a>
+        </article>
+        <article class="project-card">
+          <span class="project-tag">Interactive Web</span>
+          <h3>Bento Box Food Decoration Website</h3>
+          <p>A fun website where users can decorate a bento box and create their own food layout.</p>
+          <a class="text-link" href="projects.html">View details</a>
+        </article>
+        <article class="project-card">
+          <span class="project-tag">AI Concept</span>
+          <h3>BiteBooking Restaurant Booking System</h3>
+          <p>A booking system with a hybrid NLP and rule-based chatbot for food preference filtering.</p>
+          <a class="text-link" href="projects.html">View details</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Created by Kamarul Adam Shah for CSD34203 Individual GitHub Portfolio.</p>
+    <button class="back-to-top" type="button" aria-label="Back to top">Top</button>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

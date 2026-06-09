@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Kamarul Adam Shah for portfolio and project collaboration.">
+  <title>Contact | Kamarul Adam Shah</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="mini-game-layer" id="jet-mini-game-layer" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">KA</span>
+        <span>Kamarul.dev</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="toggle-icon" aria-hidden="true">DM</span>
+          <span>Mode</span>
+        </button>
+        <div class="mini-game-panel" aria-label="Flying Jet Mini Game Background score">
+          <span id="jet-score">Jets: 0</span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <p class="eyebrow">Contact Channel</p>
+      <h1>Contact Me</h1>
+      <p>Use this page as a professional contact section for classmates, lecturers, project reviewers, and future collaborators.</p>
+    </section>
+
+    <section class="section contact-layout">
+      <aside class="contact-panel">
+        <h2>Online Profiles</h2>
+        <ul class="contact-list">
+          <li><span>Email</span><a href="mailto:your-email@example.com">your-email@example.com</a></li>
+          <li><span>GitHub</span><a href="https://github.com/yourusername">https://github.com/yourusername</a></li>
+          <li><span>LinkedIn</span><a href="https://linkedin.com/in/yourprofile">https://linkedin.com/in/yourprofile</a></li>
+        </ul>
+        <p class="note">These are placeholders. Replace them with your real links before final GitHub submission.</p>
+      </aside>
+
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="field-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+          <small class="field-error"></small>
+        </div>
+
+        <div class="field-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+          <small class="field-error"></small>
+        </div>
+
+        <div class="field-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Project discussion" required>
+          <small class="field-error"></small>
+        </div>
+
+        <div class="field-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
+          <small class="field-error"></small>
+        </div>
+
+        <button class="btn primary" type="submit">Send Message</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Created by Kamarul Adam Shah for CSD34203 Individual GitHub Portfolio.</p>
+    <button class="back-to-top" type="button" aria-label="Back to top">Top</button>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
