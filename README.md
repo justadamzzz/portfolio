@@ -40,10 +40,24 @@ personal-blog-portfolio/
 |-- js/
 |   |-- script.js
 |-- images/
-|   |-- profile.jpg
+|   |-- profile.png
 |   |-- pixel-avatar.svg
 |   |-- quest-map.svg
+|-- projects/
+|   |-- Comic Catch/
+|   |   |-- index.html
 ```
+
+## Project Showcase
+
+### Comet Catch
+
+- Type: Interactive canvas game
+- Path: `projects/Comic Catch/index.html`
+- Description: A self-contained browser arcade game where the player controls a scout ship, collects star cores, avoids comet hazards, and manages energy while trying to improve the score.
+- Features: Score counter, best score saved with localStorage, lives, energy meter, animated particles, comet hazards, star collectibles, keyboard controls, pointer controls, and mobile touch controls.
+- Technologies: HTML with internal CSS and JavaScript, Canvas API, localStorage
+- Status: Completed
 
 ## How to Run the Project
 

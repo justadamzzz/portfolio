@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comet Catch</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #10131a;
+      --panel: #1b2230;
+      --panel-soft: #242f42;
+      --ink: #eef4ff;
+      --muted: #9eacc1;
+      --gold: #ffd166;
+      --cyan: #56cfe1;
+      --danger: #ef476f;
+      --green: #74d680;
+      --shadow: rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(86, 207, 225, 0.22), transparent 34%),
+        radial-gradient(circle at 90% 30%, rgba(239, 71, 111, 0.16), transparent 30%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    main {
+      width: min(100%, 980px);
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) 220px;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .game-shell {
+      min-width: 0;
+    }
+
+    .topbar,
+    .side {
+      background: rgba(27, 34, 48, 0.88);
+      border: 1px solid rgba(238, 244, 255, 0.12);
+      box-shadow: 0 18px 38px var(--shadow);
+    }
+
+    .topbar {
+      min-height: 72px;
+      border-radius: 8px 8px 0 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 2.15rem);
+      line-height: 1.05;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(66px, 1fr));
+      gap: 8px;
+      min-width: min(100%, 260px);
+    }
+
+    .stat {
+      background: var(--panel-soft);
+      border: 1px solid rgba(238, 244, 255, 0.12);
+      border-radius: 8px;
+      min-height: 48px;
+      display: grid;
+      align-content: center;
+      padding: 7px 9px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .stat strong {
+      font-size: 1.05rem;
+    }
+
+    .board-wrap {
+      position: relative;
+      background: #080b11;
+      border: 1px solid rgba(238, 244, 255, 0.12);
+      border-top: 0;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 38px var(--shadow);
+      aspect-ratio: 4 / 3;
+      min-height: 300px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #080b11;
+      cursor: crosshair;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: rgba(8, 11, 17, 0.7);
+      text-align: center;
+    }
+
+    .overlay[hidden] {
+      display: none;
+    }
+
+    .overlay-box {
+      width: min(100%, 340px);
+      background: rgba(27, 34, 48, 0.94);
+      border: 1px solid rgba(238, 244, 255, 0.16);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.42);
+    }
+
+    .overlay-title {
+      margin: 0 0 12px;
+      font-size: 1.55rem;
+    }
+
+    .overlay-score {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      min-height: 44px;
+      padding: 0 16px;
+      background: var(--cyan);
+      color: #071116;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(86, 207, 225, 0.22);
+    }
+
+    button:hover,
+    button:focus-visible {
+      filter: brightness(1.08);
+      outline: 2px solid rgba(255, 255, 255, 0.7);
+      outline-offset: 2px;
+    }
+
+    .side {
+      border-radius: 8px;
+      padding: 14px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .meter {
+      display: grid;
+      gap: 7px;
+    }
+
+    .meter-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .meter-track {
+      height: 12px;
+      border-radius: 999px;
+      background: #111823;
+      overflow: hidden;
+      border: 1px solid rgba(238, 244, 255, 0.1);
+    }
+
+    .meter-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--danger));
+      transition: width 120ms linear;
+    }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+      padding-top: 4px;
+    }
+
+    .legend-item {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 9px;
+      align-items: center;
+      min-height: 24px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .marker {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+    }
+
+    .marker.player {
+      background: var(--cyan);
+      box-shadow: 0 0 0 4px rgba(86, 207, 225, 0.16);
+    }
+
+    .marker.star {
+      background: var(--gold);
+      clip-path: polygon(50% 0, 61% 34%, 98% 34%, 68% 55%, 79% 91%, 50% 69%, 21% 91%, 32% 55%, 2% 34%, 39% 34%);
+    }
+
+    .marker.comet {
+      background: var(--danger);
+      border-radius: 40% 60% 50% 45%;
+    }
+
+    .pad {
+      margin-top: 4px;
+      display: none;
+      grid-template-columns: repeat(3, 52px);
+      grid-template-rows: repeat(3, 52px);
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .pad button {
+      min-height: 52px;
+      padding: 0;
+      background: var(--panel-soft);
+      color: var(--ink);
+      box-shadow: none;
+      font-size: 1.1rem;
+    }
+
+    .pad .up {
+      grid-column: 2;
+    }
+
+    .pad .left {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .pad .right {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .pad .down {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 12px;
+        align-items: start;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        min-width: 0;
+      }
+
+      .board-wrap {
+        min-height: 280px;
+      }
+
+      .side {
+        grid-template-columns: 1fr;
+      }
+
+      .pad {
+        display: grid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="game-shell" aria-label="Comet Catch game">
+      <div class="topbar">
+        <h1>Comet Catch</h1>
+        <div class="stats" aria-live="polite">
+          <div class="stat">
+            <span>Score</span>
+            <strong id="score">0</strong>
+          </div>
+          <div class="stat">
+            <span>Best</span>
+            <strong id="best">0</strong>
+          </div>
+          <div class="stat">
+            <span>Lives</span>
+            <strong id="lives">3</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="game" width="800" height="600" aria-label="Game board"></canvas>
+        <div class="overlay" id="overlay">
+          <div class="overlay-box">
+            <h2 class="overlay-title" id="overlayTitle">Comet Catch</h2>
+            <p class="overlay-score" id="overlayScore">Score 0</p>
+            <button id="startButton" type="button">Start</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side" aria-label="Game status">
+      <div class="meter">
+        <div class="meter-row">
+          <span>Energy</span>
+          <strong id="energyText">100%</strong>
+        </div>
+        <div class="meter-track">
+          <div class="meter-fill" id="energyFill"></div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <span class="marker player"></span>
+          <span>Scout ship</span>
+        </div>
+        <div class="legend-item">
+          <span class="marker star"></span>
+          <span>Star core</span>
+        </div>
+        <div class="legend-item">
+          <span class="marker comet"></span>
+          <span>Comet hazard</span>
+        </div>
+      </div>
+
+      <div class="pad" aria-label="Touch controls">
+        <button class="up" data-dir="up" type="button" aria-label="Up">^</button>
+        <button class="left" data-dir="left" type="button" aria-label="Left">&lt;</button>
+        <button class="right" data-dir="right" type="button" aria-label="Right">&gt;</button>
+        <button class="down" data-dir="down" type="button" aria-label="Down">v</button>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+    const scoreEl = document.getElementById("score");
+    const bestEl = document.getElementById("best");
+    const livesEl = document.getElementById("lives");
+    const energyFill = document.getElementById("energyFill");
+    const energyText = document.getElementById("energyText");
+    const overlay = document.getElementById("overlay");
+    const overlayTitle = document.getElementById("overlayTitle");
+    const overlayScore = document.getElementById("overlayScore");
+    const startButton = document.getElementById("startButton");
+
+    const world = { width: 800, height: 600 };
+    const keys = new Set();
+    const pointer = { active: false, x: world.width / 2, y: world.height / 2 };
+    let stars = [];
+    let comets = [];
+    let particles = [];
+    let best = Number(localStorage.getItem("cometCatchBest") || 0);
+    let state;
+    let lastTime = 0;
+    let animationId = 0;
+
+    const newState = () => ({
+      running: false,
+      score: 0,
+      lives: 3,
+      energy: 100,
+      spawnTimer: 0,
+      starTimer: 0,
+      invulnerable: 0,
+      player: {
+        x: world.width / 2,
+        y: world.height / 2,
+        radius: 17,
+        speed: 245
+      }
+    });
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      const ratio = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+      canvas.width = Math.round(rect.width * ratio);
+      canvas.height = Math.round(rect.height * ratio);
+      ctx.setTransform(canvas.width / world.width, 0, 0, canvas.height / world.height, 0, 0);
+    }
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function distance(a, b) {
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function spawnStar() {
+      stars.push({
+        x: rand(34, world.width - 34),
+        y: rand(34, world.height - 34),
+        radius: 12,
+        pulse: rand(0, Math.PI * 2)
+      });
+    }
+
+    function spawnComet() {
+      const side = Math.floor(rand(0, 4));
+      const comet = {
+        x: side === 0 ? -34 : side === 1 ? world.width + 34 : rand(0, world.width),
+        y: side === 2 ? -34 : side === 3 ? world.height + 34 : rand(0, world.height),
+        radius: rand(14, 23),
+        speed: rand(95, 170) + state.score * 1.4,
+        spin: rand(0, Math.PI * 2)
+      };
+      const angle = Math.atan2(state.player.y - comet.y, state.player.x - comet.x) + rand(-0.35, 0.35);
+      comet.vx = Math.cos(angle) * comet.speed;
+      comet.vy = Math.sin(angle) * comet.speed;
+      comets.push(comet);
+    }
+
+    function burst(x, y, color, count) {
+      for (let i = 0; i < count; i++) {
+        const angle = rand(0, Math.PI * 2);
+        const speed = rand(40, 170);
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: rand(0.25, 0.75),
+          maxLife: 0.75,
+          color
+        });
+      }
+    }
+
+    function startGame() {
+      state = newState();
+      stars = [];
+      comets = [];
+      particles = [];
+      spawnStar();
+      spawnStar();
+      spawnComet();
+      overlay.hidden = true;
+      state.running = true;
+      lastTime = performance.now();
+      cancelAnimationFrame(animationId);
+      animationId = requestAnimationFrame(loop);
+      updateHud();
+    }
+
+    function endGame() {
+      state.running = false;
+      best = Math.max(best, state.score);
+      localStorage.setItem("cometCatchBest", String(best));
+      overlayTitle.textContent = "Game Over";
+      overlayScore.textContent = "Score " + state.score;
+      startButton.textContent = "Restart";
+      overlay.hidden = false;
+      updateHud();
+    }
+
+    function updatePlayer(dt) {
+      let dx = 0;
+      let dy = 0;
+
+      if (keys.has("ArrowLeft") || keys.has("KeyA")) dx -= 1;
+      if (keys.has("ArrowRight") || keys.has("KeyD")) dx += 1;
+      if (keys.has("ArrowUp") || keys.has("KeyW")) dy -= 1;
+      if (keys.has("ArrowDown") || keys.has("KeyS")) dy += 1;
+
+      if (pointer.active) {
+        dx += pointer.x - state.player.x;
+        dy += pointer.y - state.player.y;
+      }
+
+      const length = Math.hypot(dx, dy);
+      if (length > 0) {
+        const step = state.player.speed * dt;
+        state.player.x += (dx / length) * step;
+        state.player.y += (dy / length) * step;
+        state.energy = Math.max(0, state.energy - 5.5 * dt);
+      } else {
+        state.energy = Math.min(100, state.energy + 10 * dt);
+      }
+
+      if (state.energy <= 0) {
+        state.player.speed = 170;
+      } else {
+        state.player.speed = 245;
+      }
+
+      state.player.x = clamp(state.player.x, state.player.radius, world.width - state.player.radius);
+      state.player.y = clamp(state.player.y, state.player.radius, world.height - state.player.radius);
+    }
+
+    function update(dt) {
+      updatePlayer(dt);
+      state.spawnTimer -= dt;
+      state.starTimer -= dt;
+      state.invulnerable = Math.max(0, state.invulnerable - dt);
+
+      if (state.spawnTimer <= 0) {
+        spawnComet();
+        state.spawnTimer = Math.max(0.32, 1.35 - state.score * 0.018);
+      }
+
+      if (state.starTimer <= 0 && stars.length < 4) {
+        spawnStar();
+        state.starTimer = rand(0.75, 1.6);
+      }
+
+      stars = stars.filter((star) => {
+        star.pulse += dt * 5;
+        if (distance(star, state.player) < star.radius + state.player.radius) {
+          state.score += 1;
+          state.energy = Math.min(100, state.energy + 18);
+          burst(star.x, star.y, "#ffd166", 16);
+          return false;
+        }
+        return true;
+      });
+
+      comets = comets.filter((comet) => {
+        comet.x += comet.vx * dt;
+        comet.y += comet.vy * dt;
+        comet.spin += dt * 4;
+
+        if (distance(comet, state.player) < comet.radius + state.player.radius && state.invulnerable <= 0) {
+          state.lives -= 1;
+          state.invulnerable = 1.15;
+          burst(state.player.x, state.player.y, "#ef476f", 22);
+          if (state.lives <= 0) {
+            endGame();
+          }
+          return false;
+        }
+
+        return comet.x > -90 && comet.x < world.width + 90 && comet.y > -90 && comet.y < world.height + 90;
+      });
+
+      particles = particles.filter((particle) => {
+        particle.x += particle.vx * dt;
+        particle.y += particle.vy * dt;
+        particle.vx *= 0.98;
+        particle.vy *= 0.98;
+        particle.life -= dt;
+        return particle.life > 0;
+      });
+
+      updateHud();
+    }
+
+    function updateHud() {
+      scoreEl.textContent = state.score;
+      bestEl.textContent = Math.max(best, state.score);
+      livesEl.textContent = state.lives;
+      const energy = Math.round(state.energy);
+      energyFill.style.width = energy + "%";
+      energyText.textContent = energy + "%";
+    }
+
+    function drawBackground() {
+      ctx.clearRect(0, 0, world.width, world.height);
+      ctx.fillStyle = "#080b11";
+      ctx.fillRect(0, 0, world.width, world.height);
+
+      ctx.save();
+      ctx.globalAlpha = 0.55;
+      for (let i = 0; i < 70; i++) {
+        const x = (i * 113) % world.width;
+        const y = (i * 71) % world.height;
+        const size = 1 + (i % 3) * 0.7;
+        ctx.fillStyle = i % 5 === 0 ? "#56cfe1" : "#eef4ff";
+        ctx.fillRect(x, y, size, size);
+      }
+      ctx.restore();
+
+      const glow = ctx.createRadialGradient(world.width * 0.7, world.height * 0.18, 20, world.width * 0.7, world.height * 0.18, 340);
+      glow.addColorStop(0, "rgba(86, 207, 225, 0.16)");
+      glow.addColorStop(1, "rgba(86, 207, 225, 0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, world.width, world.height);
+    }
+
+    function drawStar(star) {
+      const points = 5;
+      const outer = star.radius + Math.sin(star.pulse) * 2;
+      const inner = outer * 0.45;
+      ctx.save();
+      ctx.translate(star.x, star.y);
+      ctx.rotate(star.pulse * 0.18);
+      ctx.beginPath();
+      for (let i = 0; i < points * 2; i++) {
+        const radius = i % 2 === 0 ? outer : inner;
+        const angle = (Math.PI / points) * i - Math.PI / 2;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = "#ffd166";
+      ctx.shadowColor = "#ffd166";
+      ctx.shadowBlur = 16;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawComet(comet) {
+      ctx.save();
+      ctx.translate(comet.x, comet.y);
+      ctx.rotate(Math.atan2(comet.vy, comet.vx));
+      const tail = ctx.createLinearGradient(-comet.radius * 3.2, 0, comet.radius, 0);
+      tail.addColorStop(0, "rgba(239, 71, 111, 0)");
+      tail.addColorStop(1, "rgba(239, 71, 111, 0.55)");
+      ctx.fillStyle = tail;
+      ctx.beginPath();
+      ctx.moveTo(-comet.radius * 3.4, 0);
+      ctx.lineTo(-comet.radius * 0.4, -comet.radius * 0.8);
+      ctx.lineTo(-comet.radius * 0.1, comet.radius * 0.8);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.rotate(comet.spin);
+      ctx.fillStyle = "#ef476f";
+      ctx.shadowColor = "#ef476f";
+      ctx.shadowBlur = 13;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, comet.radius * 1.05, comet.radius * 0.82, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,0.28)";
+      ctx.beginPath();
+      ctx.arc(-comet.radius * 0.25, -comet.radius * 0.16, comet.radius * 0.24, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawPlayer() {
+      const player = state.player;
+      const flash = state.invulnerable > 0 && Math.floor(state.invulnerable * 12) % 2 === 0;
+      if (flash) return;
+
+      ctx.save();
+      ctx.translate(player.x, player.y);
+      ctx.shadowColor = "#56cfe1";
+      ctx.shadowBlur = 16;
+      ctx.fillStyle = "#56cfe1";
+      ctx.beginPath();
+      ctx.moveTo(0, -player.radius - 7);
+      ctx.lineTo(player.radius + 10, player.radius + 6);
+      ctx.lineTo(0, player.radius * 0.5);
+      ctx.lineTo(-player.radius - 10, player.radius + 6);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "#10131a";
+      ctx.beginPath();
+      ctx.arc(0, -2, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawParticles() {
+      particles.forEach((particle) => {
+        const alpha = Math.max(0, particle.life / particle.maxLife);
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = particle.color;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, 3 + alpha * 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+    }
+
+    function draw() {
+      drawBackground();
+      stars.forEach(drawStar);
+      comets.forEach(drawComet);
+      drawPlayer();
+      drawParticles();
+    }
+
+    function loop(time) {
+      const dt = Math.min(0.033, (time - lastTime) / 1000);
+      lastTime = time;
+      if (state.running) {
+        update(dt);
+      }
+      draw();
+      if (state.running) {
+        animationId = requestAnimationFrame(loop);
+      }
+    }
+
+    function canvasPoint(event) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: ((event.clientX - rect.left) / rect.width) * world.width,
+        y: ((event.clientY - rect.top) / rect.height) * world.height
+      };
+    }
+
+    window.addEventListener("keydown", (event) => {
+      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(event.code)) {
+        event.preventDefault();
+      }
+      if (event.code === "Space" && !state.running) {
+        startGame();
+      }
+      keys.add(event.code);
+    });
+
+    window.addEventListener("keyup", (event) => keys.delete(event.code));
+
+    canvas.addEventListener("pointerdown", (event) => {
+      pointer.active = true;
+      Object.assign(pointer, canvasPoint(event));
+      canvas.setPointerCapture(event.pointerId);
+    });
+
+    canvas.addEventListener("pointermove", (event) => {
+      if (pointer.active) {
+        Object.assign(pointer, canvasPoint(event));
+      }
+    });
+
+    canvas.addEventListener("pointerup", () => {
+      pointer.active = false;
+    });
+
+    canvas.addEventListener("pointercancel", () => {
+      pointer.active = false;
+    });
+
+    document.querySelectorAll("[data-dir]").forEach((button) => {
+      const codeByDirection = {
+        up: "ArrowUp",
+        down: "ArrowDown",
+        left: "ArrowLeft",
+        right: "ArrowRight"
+      };
+      const code = codeByDirection[button.dataset.dir];
+
+      button.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        keys.add(code);
+        button.setPointerCapture(event.pointerId);
+      });
+
+      button.addEventListener("pointerup", () => keys.delete(code));
+      button.addEventListener("pointercancel", () => keys.delete(code));
+      button.addEventListener("blur", () => keys.delete(code));
+    });
+
+    startButton.addEventListener("click", startGame);
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      draw();
+    });
+
+    state = newState();
+    bestEl.textContent = best;
+    updateHud();
+    resizeCanvas();
+    draw();
+  </script>
+</body>
+</html>
