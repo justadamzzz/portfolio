@@ -90,6 +90,50 @@ document.querySelectorAll(".skill-card").forEach((card) => {
   }
 });
 
+// Academic Journey animations for GPA counters and semester progress cards.
+document.querySelectorAll(".gpa-counter").forEach((counter) => {
+  const target = Number(counter.dataset.gpa || "0");
+  const duration = 1100;
+  const startTime = performance.now();
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function setCounter(value) {
+    counter.textContent = value.toFixed(2);
+  }
+
+  if (reduceMotion) {
+    setCounter(target);
+    return;
+  }
+
+  function animateCounter(time) {
+    const progress = Math.min((time - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    setCounter(target * eased);
+
+    if (progress < 1) {
+      requestAnimationFrame(animateCounter);
+    }
+  }
+
+  requestAnimationFrame(animateCounter);
+});
+
+document.querySelectorAll(".semester-card").forEach((card) => {
+  const gpa = Number(card.dataset.gpa || "0");
+  const fill = card.querySelector(".semester-fill");
+  const percentage = Math.min((gpa / 4) * 100, 100);
+
+  if (fill) {
+    fill.style.width = "0%";
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        fill.style.width = `${percentage}%`;
+      });
+    });
+  }
+});
+
 if (visitorCount) {
   const visits = Number(localStorage.getItem("portfolioVisits") || "0") + 1;
   localStorage.setItem("portfolioVisits", String(visits));
