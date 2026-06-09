@@ -46,9 +46,22 @@ personal-blog-portfolio/
 |-- projects/
 |   |-- Comic Catch/
 |   |   |-- index.html
+|   |-- IoT Mini Goal Scoreboard System/
+|   |   |-- demo.mp4
 ```
 
 ## Project Showcase
+
+### IoT Mini Goal Scoreboard System
+
+- Type: IoT / Embedded System / Smart Sports Training Prototype
+- Video path: `projects/IoT Mini Goal Scoreboard System/demo.mp4`
+- HTML video source path: `projects/IoT%20Mini%20Goal%20Scoreboard%20System/demo.mp4`
+- Description: A smart mini football training goal that detects when the ball enters the goal area, updates an OLED scoreboard, plays a goal sound with a buzzer, and uses a servo motor to return the ball to the player.
+- Components: ESP8266, ultrasonic sensor, RGB LED, OLED display, buzzer, servo motor, Telegram dashboard/control
+- Features: Distance-based RED/YELLOW/GREEN zone detection, automatic score tracking, OLED GOAL display, buzzer feedback, servo ball return, Telegram goal notifications, /score command, and /reset command
+- Skills: IoT system design, sensor-based detection, distance measurement, ESP8266 programming concept, score tracking, hardware and software integration, servo motor control, OLED display output, Telegram notification/control, and user-focused prototype design
+- Status: Completed / Demo Available
 
 ### Comet Catch
 

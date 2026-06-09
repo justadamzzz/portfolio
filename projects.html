@@ -54,11 +54,39 @@
           <button class="filter-btn active" type="button" data-filter="all">All</button>
           <button class="filter-btn" type="button" data-filter="web">Web</button>
           <button class="filter-btn" type="button" data-filter="game">Game</button>
+          <button class="filter-btn" type="button" data-filter="iot">IoT</button>
           <button class="filter-btn" type="button" data-filter="ai">AI Concept</button>
         </div>
       </div>
 
       <div class="project-grid" id="project-grid">
+        <article class="project-card project-card-wide" data-project-card data-category="iot" data-keywords="iot mini goal scoreboard system esp8266 ultrasonic sensor rgb led oled display buzzer servo motor telegram dashboard control distance measurement smart sports training prototype">
+          <span class="project-tag">IoT / Embedded System</span>
+          <h2>IoT Mini Goal Scoreboard System</h2>
+          <p>A smart mini football training goal that detects when a ball enters the goal area, updates the score, displays it on an OLED scoreboard, plays a goal sound, and uses a servo motor to return the ball to the player.</p>
+          <p><strong>Project type:</strong> IoT / Embedded System / Smart Sports Training Prototype</p>
+          <p><strong>Components used:</strong> ESP8266, ultrasonic sensor, RGB LED, OLED display, buzzer, servo motor, and Telegram dashboard/control.</p>
+          <p><strong>Main features:</strong> The system measures ball distance using ultrasonic TRIG and ECHO readings, detects red, yellow, and green zones, updates the OLED score display, shows GOAL feedback, plays a sports-style buzzer sound, returns the ball with a servo motor, and supports Telegram notifications with /score and /reset commands.</p>
+          <p><strong>Skills demonstrated:</strong> IoT system design, sensor-based detection, distance measurement, ESP8266 programming concept, score tracking, hardware and software integration, servo motor control, OLED display output, Telegram notification/control, and user-focused prototype design.</p>
+          <p><strong>Status:</strong> Completed / Demo Available</p>
+
+          <div class="tech-list">
+            <span>ESP8266</span><span>Ultrasonic Sensor</span><span>RGB LED</span><span>OLED Display</span><span>Buzzer</span><span>Servo Motor</span><span>Telegram Control</span>
+          </div>
+
+          <div class="card-actions">
+            <a class="btn small" href="#iot-demo-video">Watch Demo</a>
+          </div>
+
+          <figure class="project-video" id="iot-demo-video">
+            <video controls preload="metadata">
+              <source src="projects/IoT%20Mini%20Goal%20Scoreboard%20System/demo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <figcaption>Demo of the IoT Mini Goal Scoreboard System detecting a goal, updating the score, and returning the ball.</figcaption>
+          </figure>
+        </article>
+
         <article class="project-card" data-project-card data-category="web" data-keywords="restful vet clinic ajax crud php codeigniter mysql xampp">
           <span class="project-tag">Web Service</span>
           <h2>RESTful Web Service for Vet Clinic Management</h2>
